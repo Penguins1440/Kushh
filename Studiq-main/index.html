@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Study Routine Maker — Landing</title>
+  <!-- Google Font: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="logo">
+        <img src="logo.png" alt="Studiq" class="navbar-logo" />
+        <strong>Studiq</strong>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="login.html" class="nav-link">Login</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1 class="hero-title">Plan Smarter. Study Better.</h1>
+        <p class="hero-subtext">Smart Study Routine Maker helps students design productive routines tailored to their goals.</p>
+        <div class="hero-cta">
+          <a href="login.html" class="btn btn-primary">Try It Now</a>
+        </div>
+      </div>
+      <!-- Simple SVG illustration to avoid external assets -->
+      <div class="hero-illustration" aria-hidden="true">
+        <svg viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg" class="illu">
+          <defs>
+            <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#7bc6ff"/>
+              <stop offset="100%" stop-color="#c89cff"/>
+            </linearGradient>
+          </defs>
+          <rect x="10" y="30" width="280" height="170" rx="16" fill="url(#grad)" opacity="0.15"/>
+          <rect x="30" y="50" width="180" height="120" rx="12" fill="#ffffff"/>
+          <rect x="220" y="60" width="60" height="12" rx="6" fill="#a9c9ff"/>
+          <rect x="220" y="80" width="60" height="12" rx="6" fill="#bda9ff"/>
+          <rect x="220" y="100" width="60" height="12" rx="6" fill="#a9c9ff"/>
+          <circle cx="70" cy="85" r="18" fill="#e9f3ff" stroke="#b7d4ff"/>
+          <rect x="96" y="72" width="96" height="10" rx="5" fill="#d7e6ff"/>
+          <rect x="96" y="90" width="78" height="10" rx="5" fill="#e8ddff"/>
+          <rect x="40" y="118" width="152" height="10" rx="5" fill="#e8f1ff"/>
+          <rect x="40" y="136" width="124" height="10" rx="5" fill="#efe6ff"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title reveal">About This Project</h2>
+      <div class="about-grid">
+        <p class="reveal">Smart Study Routine Maker helps students create effective study schedules that match their goals and availability.</p>
+        <p class="reveal">It uses data-based planning to distribute study time across subjects for better balance and productivity.</p>
+        <p class="reveal">Designed for simplicity and daily use — so you can focus on learning, not logistics.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section alt" id="features">
+    <div class="container">
+      <h2 class="section-title reveal">Features</h2>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="icon">🗓️</div>
+          <h3>Custom Timetables</h3>
+          <p>Generate personalized study plans tailored to your subjects and goals.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="icon">⏱️</div>
+          <h3>Progress Tracker</h3>
+          <p>Monitor study hours and performance with simple tracking tools.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="icon">📊</div>
+          <h3>Visual Insights</h3>
+          <p>Understand productivity trends with clean, informative visuals.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="icon">✨</div>
+          <h3>Simple & Free</h3>
+          <p>Easy to use, no login required — start planning in seconds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call-to-Action Section -->
+  <section class="cta" id="cta">
+    <div class="container cta-inner">
+      <blockquote class="quote">"Consistency beats intensity."</blockquote>
+      <a href="login.html" class="btn btn-contrast">Generate My Study Routine</a>
+    </div>
+  </section>
+
+  <!-- Scroll to top button -->
+  <button class="to-top" id="to-top" aria-label="Scroll to top">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

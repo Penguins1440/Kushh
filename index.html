@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kush Aryal — Elegant portfolio. Web developer, designer, and creative technologist from Kathmandu, Nepal.">
+  <title>Kush Aryal | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-ring"></div>
+      <div class="loader-text">KUSH ARYAL</div>
+      <div class="loader-bar"><div class="loader-progress"></div></div>
+    </div>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <nav class="nav-container">
+      <a href="#home" class="nav-logo">
+        K<span class="logo-dot">.</span>Aryal
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#hobbies" class="nav-link">Hobbies</a></li>
+        <li><a href="#achievements" class="nav-link">Achievements</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero section">
+      <div class="hero-bg-glow"></div>
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <p class="hero-greeting">Hello, I'm</p>
+          <h1 class="hero-name"><span class="gradient-text">Kush Aryal</span></h1>
+          <div class="typing-wrapper">
+            <span class="typing-text" id="typingText"></span>
+            <span class="typing-cursor">|</span>
+          </div>
+          <p class="hero-intro">Crafting refined digital experiences from Kathmandu, Nepal — blending code, design, and elegance into every project.</p>
+          <p class="hero-location"><i class="fas fa-location-dot"></i> Kathmandu, Nepal</p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary"><span>View Projects</span><i class="fas fa-arrow-right"></i></a>
+            <a href="#contact" class="btn btn-outline"><span>Contact Me</span><i class="fas fa-paper-plane"></i></a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper reveal delay-1">
+          <div class="profile-card">
+            <div class="profile-frame"></div>
+            <div class="profile-image-container">
+              <img src="kush.png" alt="Kush Aryal — Profile Photo" class="profile-image" width="380" height="380">
+            </div>
+          </div>
+          <div class="profile-badge"><i class="fas fa-code"></i><span>Developer</span></div>
+        </div>
+      </div>
+      <a href="#about" class="scroll-indicator" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <section id="about" class="about section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">About Me</span>
+          <h2 class="section-title">Who <span class="gradient-text">I Am</span></h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-image-col reveal">
+            <div class="about-profile-card">
+              <img src="kush.png" alt="Kush Aryal" class="about-profile-img">
+              <div class="about-img-overlay"></div>
+            </div>
+          </div>
+          <div class="about-content reveal delay-1">
+            <p class="about-text">I'm <strong>Kush Aryal</strong>, an aspiring AI and Database enthusiast based in <strong>Kathmandu, Nepal</strong> with a passion for technology and problem-solving, and modern web development.I enjoy building clean and responsive websites using HTML, CSS, and JavaScript while continuously exploring the world of AI, databases, and emerging technologies.</p>
+            <p class="about-text">From creating interactive web experiences to collaborating on projects during hackathons, I love turning ideas into practical and creative solutions. I’m constantly learning, experimenting, and improving my skills — aiming to combine design, logic, and innovation to build impactful digital experiences.</p>
+            <div class="info-cards">
+              <div class="info-card glass"><i class="fas fa-user"></i><div><span class="info-label">Name</span><span class="info-value">Kush Aryal</span></div></div>
+              <div class="info-card glass"><i class="fas fa-map-marker-alt"></i><div><span class="info-label">Location</span><span class="info-value">Kathmandu, Nepal</span></div></div>
+              <div class="info-card glass"><i class="fas fa-graduation-cap"></i><div><span class="info-label">Education</span><span class="info-value">SEE &amp; +2 (NEB)</span></div></div>
+              <div class="info-card glass"><i class="fas fa-laptop-code"></i><div><span class="info-label">Focus</span><span class="info-value">AI, Database &amp; UI/UX</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="stats-grid reveal">
+          <div class="stat-card glass"><span class="stat-number" data-target="2">0</span><span class="stat-suffix">+</span><span class="stat-label">Projects Built</span></div>
+          <div class="stat-card glass"><span class="stat-number" data-target="3">0</span><span class="stat-suffix">+</span><span class="stat-label">Core Skills</span></div>
+          <div class="stat-card glass"><span class="stat-number" data-target="2">0</span><span class="stat-suffix">+</span><span class="stat-label">Years Learning</span></div>
+          <div class="stat-card glass"><span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span><span class="stat-label">Dedication</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="education section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Education</span>
+          <h2 class="section-title">My <span class="gradient-text">Journey</span></h2>
+        </div>
+        <div class="timeline reveal">
+          <div class="timeline-line"></div>
+          <article class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass">
+              <span class="timeline-year">2024 — Present</span>
+              <h3>+2 (NEB)</h3>
+              <p class="timeline-school">Uniglobe Secondary School</p>
+              <p class="timeline-desc">Advanced secondary education with focus on science and technology foundations.</p>
+              <div class="timeline-tags"><span>NEB</span><span>Science</span></div>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card glass">
+              <span class="timeline-year">Completed</span>
+              <h3>SEE</h3>
+              <p class="timeline-school">Samriddhi School</p>
+              <p class="timeline-desc">Secondary Education Examination — building the academic foundation for future growth.</p>
+              <div class="timeline-tags"><span>SEE</span><span>Foundation</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="skills section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Skills</span>
+          <h2 class="section-title">Technical <span class="gradient-text">Arsenal</span></h2>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card glass reveal" data-skill="95">
+            <div class="skill-icon"><i class="fab fa-html5"></i></div>
+            <h3>HTML</h3>
+            <div class="skill-bar"><div class="skill-progress"></div></div>
+            <span class="skill-percent">85%</span>
+          </article>
+          <article class="skill-card glass reveal delay-1" data-skill="90">
+            <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+            <h3>CSS</h3>
+            <div class="skill-bar"><div class="skill-progress"></div></div>
+            <span class="skill-percent">80%</span>
+          </article>
+          <article class="skill-card glass reveal delay-2" data-skill="85">
+            <div class="skill-icon"><i class="fab fa-js"></i></div>
+            <h3>JavaScript</h3>
+            <div class="skill-bar"><div class="skill-progress"></div></div>
+            <span class="skill-percent">55%</span>
+          </article>
+          <article class="skill-card glass reveal" data-skill="88">
+            <div class="skill-icon"><i class="fas fa-globe"></i></div>
+            <h3>Web Development</h3>
+            <div class="skill-bar"><div class="skill-progress"></div></div>
+            <span class="skill-percent">76%</span>
+          </article>
+          <article class="skill-card glass reveal delay-1" data-skill="80">
+            <div class="skill-icon"><i class="fas fa-robot"></i></div>
+            <h3>AI &amp; Technology</h3>
+            <div class="skill-bar"><div class="skill-progress"></div></div>
+            <span class="skill-percent">20%</span>
+          </article>
+          <article class="skill-card glass reveal delay-2" data-skill="87">
+            <div class="skill-icon"><i class="fas fa-palette"></i></div>
+            <h3>UI/UX Design</h3>
+            <div class="skill-bar"><div class="skill-progress"></div></div>
+            <span class="skill-percent">87%</span>
+          </article>
+          <article class="skill-card glass reveal skill-card-wide" data-skill="92">
+            <div class="skill-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3>Creative Thinking</h3>
+            <div class="skill-bar"><div class="skill-progress"></div></div>
+            <span class="skill-percent">82%</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="hobbies" class="hobbies section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Beyond Code</span>
+          <h2 class="section-title">My <span class="gradient-text">Hobbies</span></h2>
+          <p class="section-subtitle">What I enjoy when I'm not building on the screen.</p>
+        </div>
+        <div class="hobbies-grid">
+          <article class="hobby-card glass reveal">
+            <div class="hobby-icon"><i class="fas fa-microphone"></i></div>
+            <h3>Singing</h3>
+            <p>Expressing emotion and storytelling through voice.</p>
+          </article>
+          <article class="hobby-card glass reveal delay-1">
+            <div class="hobby-icon"><i class="fas fa-pen-fancy"></i></div>
+            <h3>Songwriting</h3>
+            <p>Turning ideas and feelings into lyrics and melodies.</p>
+          </article>
+          <article class="hobby-card glass reveal delay-2">
+            <div class="hobby-icon"><i class="fas fa-music"></i></div>
+            <h3>Playing Music</h3>
+            <p>Creating and performing — rhythm, harmony, and flow.</p>
+          </article>
+          <article class="hobby-card glass reveal">
+            <div class="hobby-icon"><i class="fas fa-gamepad"></i></div>
+            <h3>Gaming</h3>
+            <p>Strategy, adventure, and immersive worlds.</p>
+          </article>
+          <article class="hobby-card glass reveal delay-1">
+            <div class="hobby-icon"><i class="fas fa-film"></i></div>
+            <h3>Watching Movies</h3>
+            <p>Cinema, stories, and visual storytelling from around the globe.</p>
+          </article>
+          <article class="hobby-card glass reveal delay-2">
+            <div class="hobby-icon"><i class="fas fa-plane"></i></div>
+            <h3>Travelling</h3>
+            <p>Exploring new places and cultures around the world.</p>
+          </article>
+          <article class="hobby-card glass reveal">
+            <div class="hobby-icon"><i class="fas fa-users"></i></div>
+            <h3>Building Connections</h3>
+            <p>Making new friends and growing meaningful networks.</p>
+          </article>
+          <article class="hobby-card glass reveal delay-1">
+            <div class="hobby-icon"><i class="fas fa-camera"></i></div>
+            <h3>Photography</h3>
+            <p>Capturing moments, light, and perspective through the lens.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements" class="achievements section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Milestones</span>
+          <h2 class="section-title">My <span class="gradient-text">Achievements</span></h2>
+          <p class="section-subtitle">Competitions, awards, and learning experiences along the way.</p>
+        </div>
+        <div class="achievements-grid">
+          <article class="achievement-card glass reveal">
+            <div class="achievement-icon"><i class="fas fa-laptop-code"></i></div>
+            <span class="achievement-badge">Tech</span>
+            <h3>Hackathon Participation</h3>
+            <p>Competed in a hackathon, collaborating under pressure to build and present a working solution.</p>
+          </article>
+          <article class="achievement-card glass reveal delay-1">
+            <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
+            <span class="achievement-badge highlight">2nd Place</span>
+            <h3>Presentation Competition</h3>
+            <p>Won second place in a high school presentation competition — clear delivery and strong ideas.</p>
+          </article>
+          <article class="achievement-card glass reveal delay-2">
+            <div class="achievement-icon"><i class="fas fa-futbol"></i></div>
+            <span class="achievement-badge">Sports</span>
+            <h3>Futsal Tournament</h3>
+            <p>Represented my team in a futsal tournament — teamwork, discipline, and competitive spirit.</p>
+          </article>
+          <article class="achievement-card glass reveal">
+            <div class="achievement-icon"><i class="fas fa-brain"></i></div>
+            <span class="achievement-badge">Workshop</span>
+            <h3>Memory Training Class</h3>
+            <p>Attended a dedicated memory training workshop to sharpen focus and recall techniques.</p>
+          </article>
+          <article class="achievement-card glass reveal delay-1">
+            <div class="achievement-icon"><i class="fas fa-video"></i></div>
+            <span class="achievement-badge highlight">Award</span>
+            <h3>30-Day Filmmaking Challenge</h3>
+            <p>Received an award for the British Council's 30-day filmmaking challenge in 2021 — storytelling through film.</p>
+          </article>
+          <article class="achievement-card glass reveal delay-2">
+            <div class="achievement-icon"><i class="fas fa-guitar"></i></div>
+            <span class="achievement-badge">Music</span>
+            <h3>Band Competition</h3>
+            <p>Participated in a high school band competition — performance, coordination, and stage presence.</p>
+          </article>
+          <article class="achievement-card glass reveal achievement-card-wide">
+            <div class="achievement-icon"><i class="fas fa-chart-line"></i></div>
+            <span class="achievement-badge">Coursera</span>
+            <h3>Data Science &amp; Big Data</h3>
+            <p>Completed Coursera courses on what data science is and the essential tools data scientists use.</p>
+            <div class="achievement-cert-actions">
+              <a href="certificates.html" class="btn btn-sm btn-primary achievement-cert-link" aria-label="View Coursera certificates">
+                <i class="fas fa-certificate"></i> View Certificates
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Projects</span>
+          <h2 class="section-title">Featured <span class="gradient-text">Work</span></h2>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-image">
+              <div class="project-placeholder project-ph-1"><i class="fas fa-rocket"></i></div>
+              <div class="project-overlay">
+                <a href="Black-Hat-main/Black-Hat-main/index.html" class="project-link" aria-label="Live Demo" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                <a href="https://github.com/Penguins1440/Black-Hat.git" class="project-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+              </div>
+            </div>
+            <div class="project-content">
+              <span class="project-tag">Web App</span>
+              <h3>Hackathon Project</h3>
+              <p>A website for a hackathon project that includes information about the project, its features, and its technology used.</p>
+              <div class="project-buttons">
+                <a href="Black-Hat-main/Black-Hat-main/index.html" class="btn btn-sm btn-primary" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                <a href="https://github.com/Penguins1440/Black-Hat.git" class="btn btn-sm btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+            </div>
+          </article>
+          <article class="project-card reveal delay-1">
+            <div class="project-image">
+              <div class="project-placeholder project-ph-2"><i class="fas fa-graduation-cap"></i></div>
+              <div class="project-overlay">
+                <a href="Studiq-main/index.html" class="project-link" aria-label="Live Demo" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                <a href="https://github.com/Penguins1440/Studiq" class="project-link" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+              </div>
+            </div>
+            <div class="project-content">
+              <span class="project-tag">Web App</span>
+              <h3>Studiq</h3>
+              <p>Smart study routine maker — plan schedules, track learning, and explore study tools in one place.</p>
+              <div class="project-buttons">
+                <a href="Studiq-main/index.html" class="btn btn-sm btn-primary" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                <a href="https://github.com/Penguins1440/Studiq" class="btn btn-sm btn-outline" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+            </div>
+          </article>
+          <article class="project-card reveal delay-2">
+            <div class="project-image">
+              <div class="project-placeholder project-ph-3"><i class="fas fa-brain"></i></div>
+              <div class="project-overlay">
+                <a href="#" class="project-link" aria-label="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+                <a href="#" class="project-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              </div>
+            </div>
+            <div class="project-content">
+              <span class="project-tag">AI Tool</span>
+              <h3>Neural Chat Interface</h3>
+              <p>AI-powered chat interface with a refined interface and intelligent conversation flow.</p>
+              <div class="project-buttons">
+                <a href="#" class="btn btn-sm btn-primary">Live Demo</a>
+                <a href="#" class="btn btn-sm btn-outline"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Contact</span>
+          <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+        </div>
+        <div class="contact-grid">
+          <form class="contact-form glass reveal" id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <span>Send via WhatsApp</span>
+              <i class="fab fa-whatsapp"></i>
+            </button>
+          </form>
+          <div class="contact-info reveal delay-1">
+            <div class="contact-card glass">
+              <i class="fas fa-envelope"></i>
+              <h4>Email</h4>
+              <a href="mailto:aryalkush12@gmail.com">aryalkush12@gmail.com</a>
+            </div>
+            <div class="contact-card glass">
+              <i class="fab fa-whatsapp"></i>
+              <h4>WhatsApp</h4>
+              <a href="https://wa.me/9779841712132" target="_blank" rel="noopener noreferrer">+977 9841712132</a>
+            </div>
+            <div class="contact-card glass">
+              <i class="fas fa-location-dot"></i>
+              <h4>Location</h4>
+              <p>Kathmandu, Nepal</p>
+            </div>
+          </div>
+        </div>
+        <div class="social-section reveal">
+          <h3 class="social-title">Find Me Online</h3>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/aryal.kush/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram" data-platform="instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@aryalkush" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="YouTube" data-platform="youtube"><i class="fab fa-youtube"></i></a>
+            <a href="mailto:aryalkush12@gmail.com" class="social-icon" aria-label="Email" data-platform="email"><i class="fas fa-envelope"></i></a>
+            <a href="https://wa.me/9779841712132" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp" data-platform="whatsapp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Kush Aryal. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

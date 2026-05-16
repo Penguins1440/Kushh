@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Study Routine Maker – Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo" title="Home">
+        <img src="logo.png" alt="Studiq" class="navbar-logo" />
+        <strong>Studiq</strong>
+      </a>
+      <div>
+        <button id="logout-btn" class="btn btn-contrast" type="button">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="dash-layout">
+    <aside class="dash-sidebar">
+      <nav class="dash-nav" aria-label="Dashboard">
+        <a class="dash-link active" href="dashboard.html">Dashboard</a>
+        <a class="dash-link" href="smartstudy.html">SmartStudy</a>
+        <a class="dash-link" href="SmartStudyExams.html">SmartStudy Exams</a>
+      </nav>
+    </aside>
+
+    <main>
+      <section class="dash-card fade-in" id="top">
+        <h1 id="welcome" class="dash-welcome">Welcome!</h1>
+        <p class="dash-placeholder">Your study routine tools are ready. Use SmartStudy to build a weekly plan, or open SmartStudy Exams for exam prep.</p>
+        <div class="hero-cta" style="margin-top:16px">
+          <a href="smartstudy.html" class="btn btn-primary">Open SmartStudy</a>
+          <a href="SmartStudyExams.html" class="btn btn-contrast">SmartStudy Exams</a>
+        </div>
+      </section>
+
+      <section class="dash-card fade-in" id="progress">
+        <h2 class="section-subtitle">Progress</h2>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-title">Total study hours (this week)</div>
+            <div id="kpi-hours" class="kpi-value">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-title">Average productivity</div>
+            <div id="kpi-prod" class="kpi-value">—</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-title">Needs focus</div>
+            <div id="kpi-focus" class="kpi-value">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-title">Days until exam</div>
+            <div id="kpi-exam-days" class="kpi-value">—</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="dash-card fade-in" id="analytics">
+        <h2 class="section-subtitle">Analytics</h2>
+        <p class="muted" style="margin-top:0">Weekly productivity trend</p>
+        <canvas id="lineChart" width="900" height="260" style="width:100%;max-width:100%;"></canvas>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

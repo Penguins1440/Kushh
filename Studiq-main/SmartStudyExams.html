@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartStudy Exams – Countdown</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Page-scoped styling for input buttons on SmartStudyExams */
+    input[type="button"] { background: #1a2533; color: #fff; border: none; border-radius: 12px; padding: 10px 14px; font-weight: 700; cursor: pointer; box-shadow: 0 10px 20px rgba(37,55,70,.10); transition: background .2s ease; }
+    input[type="button"]:hover { background: #0f1f30; }
+  </style>
+</head>
+<body>
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo" title="Home">
+        <img src="logo.png" alt="Studiq" class="navbar-logo" />
+        <strong>Studiq</strong>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <div>
+          <button id="logout-btn" class="btn btn-contrast">Logout</button>
+        </div>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <div class="dash-layout">
+    <aside class="dash-sidebar">
+      <nav class="dash-nav" aria-label="Sidebar">
+        <a class="dash-link" href="dashboard.html">Dashboard</a>
+        <a class="dash-link" href="smartstudy.html">SmartStudy</a>
+        <a class="dash-link active" href="SmartStudyExams.html">SmartStudy Exams</a>
+      </nav>
+    </aside>
+
+    <main class="dash-main" style="padding-top: 24px;">
+      <section class="dash-card fade-in">
+        <h1 class="section-title">Exam Countdown</h1>
+        <p class="helper">Track the total days left until your exam. Save once, and it will update automatically each day.</p>
+
+        <h2 class="section-subtitle section-divider">Exam Details</h2>
+        <div class="filters">
+          <label>
+            <span>Grade/Class</span>
+            <select id="ex-grade">
+              <option value="">Select…</option>
+              <option>6</option><option>7</option><option>8</option><option>9</option>
+              <option>10</option><option>11</option><option>12</option>
+            </select>
+          </label>
+          <label>
+            <span>Total Days Left for Exam</span>
+            <select id="ex-days">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+              <option>6</option><option selected>7</option><option>10</option><option>14</option><option>21</option>
+              <option>30</option><option>45</option><option>60</option>
+            </select>
+          </label>
+          <label>
+            <span>Starting Time</span>
+            <div class="ios-time-picker">
+              <select id="ex-hour" class="ios-select">
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                <option>11</option><option>12</option>
+              </select>
+              <select id="ex-ampm" class="ios-select">
+                <option>AM</option><option>PM</option>
+              </select>
+            </div>
+          </label>
+        </div>
+
+        <div class="triple-actions" style="margin-top:10px;">
+          <button id="ex-save" class="btn btn-ghost">Save Exams</button>
+          <button id="ex-load" class="btn btn-secondary">Load Saved</button>
+          <button id="ex-reset" class="btn btn-danger">Reset</button>
+        </div>
+        <div class="actions" style="margin-top:10px;">
+          <button id="ex-clear" class="btn btn-danger">Clear All</button>
+        </div>
+
+        <div id="ex-msg" class="auth-message" aria-live="polite" style="margin-top:6px;"></div>
+
+        <h2 class="section-subtitle section-divider" style="margin-top:16px;">Subjects You Study</h2>
+        <div class="preset-box">
+          <div class="preset-row">
+            <label class="small-label" for="ex-preset">Quick add preset</label>
+            <select id="ex-preset" class="pretty-select">
+              <option value="">Select…</option>
+              <option>English</option><option>Science</option><option>Computer</option>
+              <option>Physics</option><option>Chemistry</option><option>Biology</option>
+              <option>History</option><option>Geography</option><option>Account</option>
+              <option>Economics</option><option>Social Studies</option><option>Mathematics</option>
+            </select>
+            <button id="ex-addpreset" class="btn btn-secondary">Add</button>
+          </div>
+        </div>
+
+        <div class="info-note">Tip: Difficulty 1–5 (easy→hard), Exam Priority 1–5 (low→high).</div>
+        <div class="table-wrapper">
+          <table class="subjects-table pretty-table" id="ex-subjects">
+            <thead>
+              <tr>
+                <th>Subject Name</th>
+                <th>Difficulty (1–5)</th>
+                <th>Exam Priority (1–5)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="ex-subjects-body">
+              <tr>
+                <td><input type="text" placeholder="Maths" value="Maths" /></td>
+                <td><select><option>1</option><option>2</option><option selected>4</option><option>5</option><option>3</option></select></td>
+                <td><select><option>1</option><option>2</option><option>3</option><option selected>5</option><option>4</option></select></td>
+                <td><button class="icon-btn ex-remove" title="Remove">✖</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button id="ex-add" class="btn btn-secondary" style="margin-top:8px;">+ Add More Subject</button>
+
+        <div class="badges" style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+          <span class="badge" id="ex-b-subjects">Subjects: 1</span>
+          <span class="badge" id="ex-b-days">Exam days: 7</span>
+        </div>
+
+        <h2 class="section-subtitle section-divider" style="margin-top:16px;">Generate Your Preferred Routine</h2>
+        <button id="ex-generate" class="btn btn-primary dark-gen" style="font-size:16px;padding:14px 22px;">Generate Study Routine</button>
+
+        <h2 class="section-subtitle" style="margin-top:16px;">📆 Your Smart Study Routine</h2>
+        <div id="ex-routine" class="table-wrapper"></div>
+
+        <h2 class="section-subtitle" style="margin-top:16px;">📊 Weekly Study Summary</h2>
+        <div class="kpi-grid">
+          <div class="kpi-card"><div class="kpi-label">Total hours</div><div id="ex-kpi-hours" class="kpi-value">0</div></div>
+          <div class="kpi-card"><div class="kpi-label">Subjects</div><div id="ex-kpi-subj" class="kpi-value">0</div></div>
+          <div class="kpi-card"><div class="kpi-label">Days left</div><div id="ex-days-left" class="kpi-value">—</div></div>
+        </div>
+
+        <div class="actions" style="margin-top:10px;">
+          <button id="ex-download" class="btn btn-ghost">Download Routine as PDF</button>
+          <button id="ex-regenerate" class="btn btn-danger">Regenerate Routine</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
