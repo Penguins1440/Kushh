@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Choose Uniglobe? - Uniglobe SS College</title>
+
+  <!-- Google Fonts and Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+      .top-bar {
+         width: 100%;
+         height: 8px;
+         background: linear-gradient(90deg, #8dc63f 40%, #2a348d 60%);
+         position: relative;
+         margin-top: 0;
+         z-index: 20;
+       }
+
+      body {
+        padding-top: 0; 
+      }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f8fafc;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2563eb;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #2563eb;
+    }
+
+    .back-btn {
+      background: #2563eb;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 80px 0;
+    }
+
+    .intro-section {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .intro-section h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #1e293b;
+    }
+
+    .intro-section p {
+      font-size: 1.2rem;
+      color: #64748b;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* Reasons Grid */
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 60px;
+    }
+
+    .reason-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reason-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+
+    .reason-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .reason-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .reason-card:hover .reason-icon {
+      transform: scale(1.1);
+    }
+
+    .reason-icon i {
+      font-size: 2rem;
+      color: white;
+    }
+
+    .reason-card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1e293b;
+    }
+
+    .reason-card p {
+      color: #64748b;
+      line-height: 1.7;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      background: white;
+      padding: 80px 0;
+      margin: 60px 0;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      color: #1e293b;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background: #f8fafc;
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      border-left: 4px solid #2563eb;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      color: #64748b;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .testimonial-position {
+      color: #2563eb;
+      font-size: 0.9rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+      border-radius: 20px;
+      margin: 60px 0;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-btn {
+      background: white;
+      color: #2563eb;
+      padding: 1rem 2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    .footer {
+      background: #1e293b;
+      color: white;
+      padding: 40px 0 20px;
+      text-align: center;
+    }
+
+    .footer p {
+      opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .intro-section h2,
+      .testimonials h2,
+      .cta-section h2 {
+        font-size: 2rem;
+      }
+      
+      .reasons-grid,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <img src="Uniglobelogo.png" alt="Uniglobe Logo" style="height: 40px; width: auto; margin-right: 10px;">
+       
+      </div>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#features" class="nav-link">Features</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="top-bar"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+      </a>
+      <h1>Why Choose Uniglobe?</h1>
+      <p>Discover the compelling reasons why students choose Uniglobe SS College for their academic journey and future success.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Intro Section -->
+      <section class="intro-section">
+        <h2>Excellence in Education</h2>
+        <p>
+          At Uniglobe SS College, we believe in providing more than just education – we offer a transformative learning experience 
+          that prepares students for the challenges of tomorrow. Our commitment to academic excellence, innovative teaching methods, 
+          and holistic development makes us the preferred choice for students seeking quality education in Nepal.
+        </p>
+      </section>
+
+      <!-- Reasons Grid -->
+      <section class="reasons-grid">
+        <div class="reason-card">
+          <div class="reason-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h3>Academic Excellence</h3>
+          <p>Consistently achieving top board results with our proven track record of academic success. Our students regularly secure positions in national and international universities.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <h3>Experienced Faculty</h3>
+          <p>Our dedicated team of experienced educators brings years of expertise and passion to the classroom, ensuring quality education and personalized attention.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon">
+            <i class="fas fa-laptop"></i>
+          </div>
+          <h3>Smart Classrooms</h3>
+          <p>State-of-the-art digital learning platforms and smart classrooms equipped with modern technology to enhance the learning experience.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <h3>Practical Focus</h3>
+          <p>Real-world exposure through industry partnerships, internships, and practical projects that bridge the gap between theory and application.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Safe Environment</h3>
+          <p>Inclusive, diverse, and safe learning environment that promotes respect, understanding, and personal growth for all students.</p>
+        </div>
+
+        <div class="reason-card">
+          <div class="reason-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Proven Success</h3>
+          <p>Our alumni have achieved remarkable success in various fields, with many securing positions in prestigious national and international institutions.</p>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="testimonials">
+        <h2>What Our Students Say</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              "Uniglobe provided me with the perfect foundation for my academic journey. The faculty's dedication and the practical approach to learning made all the difference."
+            </p>
+            <div class="testimonial-author">Priya Sharma</div>
+            <div class="testimonial-position">Science Graduate, 2023</div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              "The management program at Uniglobe gave me real-world insights and practical skills that I use every day in my career. Highly recommended!"
+            </p>
+            <div class="testimonial-author">Rajesh Kumar</div>
+            <div class="testimonial-position">Management Graduate, 2022</div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              "The law faculty at Uniglobe is exceptional. Their expertise and guidance helped me develop strong analytical and critical thinking skills."
+            </p>
+            <div class="testimonial-author">Anjali Patel</div>
+            <div class="testimonial-position">Law Graduate, 2023</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta-section">
+        <h2>Ready to Join Uniglobe?</h2>
+        <p>Take the first step towards your academic excellence and future success. Join our community of learners and achievers.</p>
+        <a href="index.html#contact" class="cta-btn">Contact Us Today</a>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Uniglobe SS College — All rights reserved</p>
+    </div>
+  </footer>
+</body>
+</html> 

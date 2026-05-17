@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Exam Results</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      display: flex;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background-color: #1a1d2b;
+      color: white;
+      padding-top: 30px;
+      position: fixed;
+      height: 100vh;
+      left: 0;
+      top: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .sidebar .logo img {
+      width: 140px;
+      height: auto;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 30px;
+      color: #ccc;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: white;
+      background-color: #2a2d40;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 240px; /* Make room for sidebar */
+      padding: 30px;
+      flex: 1;
+      background: #fff;
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+
+    /* Result Header */
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2d2d2d;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 6px;
+      margin-bottom: 25px;
+    }
+
+    .semester-selector select {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    /* Performance Stats */
+    .result-summary {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .performance-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .stat-item {
+      background-color: #3d3d3d;
+      padding: 15px;
+      border-radius: 6px;
+      color: white;
+      text-align: center;
+    }
+
+    /* Result Table */
+    .result-table-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      overflow-x: auto;
+    }
+
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px;
+    }
+
+    .result-table th,
+    .result-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .result-table thead {
+      background-color: #4A90E2;
+      color: white;
+    }
+
+    .result-table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .result-table tbody tr:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Buttons */
+    .result-actions {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .btn {
+      padding: 10px 16px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-primary {
+      background-color: #4A90E2;
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #3a78c2;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+      color: white;
+    }
+    .btn-secondary:hover {
+      background-color: #5a6268;
+    }
+
+    .btn-info {
+      background-color: #17a2b8;
+      color: white;
+    }
+    .btn-info:hover {
+      background-color: #138496;
+    }
+
+    .logout-btn {
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      width: 100%;
+      text-align: left;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+    }
+
+    .logout-btn:hover {
+      background-color: #b71c1c;
+    }
+
+    /* Grade Colors */
+    .grade-A { color: #28a745; font-weight: bold; }
+    .grade-B { color: #17a2b8; font-weight: bold; }
+    .grade-C { color: #ffc107; font-weight: bold; }
+    .grade-D { color: #fd7e14; font-weight: bold; }
+    .grade-F { color: #dc3545; font-weight: bold; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 10px 0;
+        display: flex;
+        overflow-x: auto;
+      }
+
+      .sidebar .logo {
+        margin: 0 15px 0 20px;
+        flex-shrink: 0;
+      }
+
+      .sidebar a {
+        padding: 10px 15px;
+        margin: 0 10px;
+        white-space: nowrap;
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 15px;
+      }
+
+      .result-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">
+      <a href="dashboard_mis.html"><img src="https://student.uniglobecollege.edu.np/Content/img/Uniglobelogo.png" alt="Logo"></a>
+    </div>
+    <a href="dashboard_mis.html">Profile</a>
+    <a href="attendance.html">Attendance</a>
+    <a href="assignment.html">Assignments</a>
+    <a href="calender_mis.html">Calendar</a>
+    <a href="Result_mis.html" class="active">Exam Result</a>
+    <button class="logout-btn">Logout</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="result-header">
+      <h2>Exam Results</h2>
+      <div class="semester-selector">
+        <label for="semester">Select Exam:</label>
+        <select id="semester">
+          <option value="1">First Terminal Exam</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="result-summary">
+      <h3>Overall Performance</h3>
+      <div class="performance-stats">
+        <div class="stat-item">
+          <div>GPA</div>
+          <strong id="gpa-value">-</strong>
+        </div>
+        <div class="stat-item">
+          <div>Total Credits</div>
+          <strong id="credits-value">-</strong>
+        </div>
+        <div class="stat-item">
+          <div>Status</div>
+          <strong id="status-value">-</strong>
+        </div>
+        <div class="stat-item">
+          <div>Total Subjects</div>
+          <strong id="subjects-value">-</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-table-container">
+      <table class="result-table">
+        <thead>
+          <tr>
+            <th>Subject Code</th>
+            <th>Subject Name</th>
+            <th>Credit Hours</th>
+            <th>Internal (25%)</th>
+            <th>External (75%)</th>
+            <th>Total Marks</th>
+            <th>Grade</th>
+            <th>Grade Point</th>
+          </tr>
+        </thead>
+        <tbody id="result-tbody">
+          <!-- JavaScript will populate this -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="result-actions">
+      <button class="btn btn-primary" onclick="printResults()">Print</button>
+      <button class="btn btn-secondary" onclick="downloadPDF()">Download PDF</button>
+      <button class="btn btn-info" onclick="viewHistory()">View History</button>
+    </div>
+  </div>
+
+  <script>
+    // Function to calculate grade and grade point
+    function calculateGrade(totalMarks) {
+      if (totalMarks >= 90) return { grade: 'A+', gradePoint: 4.00 };
+      if (totalMarks >= 80) return { grade: 'A', gradePoint: 3.60 };
+      if (totalMarks >= 70) return { grade: 'B+', gradePoint: 3.20 };
+      if (totalMarks >= 60) return { grade: 'B', gradePoint: 2.80 };
+      if (totalMarks >= 50) return { grade: 'C+', gradePoint: 2.40 };
+      if (totalMarks >= 40) return { grade: 'C', gradePoint: 2.00 };
+      if (totalMarks >= 30) return { grade: 'D+', gradePoint: 1.80 };
+      return { grade: 'F', gradePoint: 0.00 };
+    }
+
+    // Function to calculate total marks (internal + external)
+    function calculateTotal(internal, external) {
+      return internal + external;
+    }
+
+    const examResults = {
+      1: {
+        gpa: 3.45,
+        totalCredits: 18,
+        status: 'Passed',
+        subjects: [
+          { code: '1011', name: 'English', credits: 3, internal: 22, external: 65 },
+          { code: '1012', name: 'Nepali', credits: 3, internal: 20, external: 62 },
+          { code: '1013', name: 'Mathematics', credits: 3, internal: 21, external: 68 },
+          { code: '1014', name: 'Physics', credits: 3, internal: 19, external: 58 },
+          { code: '1015', name: 'Chemistry', credits: 3, internal: 21, external: 65 },
+          { code: '1016', name: 'Computer Science', credits: 3, internal: 23, external: 70 }
+        ]
+      }
+    };
+
+    function updateResults(semester) {
+      const data = examResults[semester];
+      const tbody = document.getElementById('result-tbody');
+      const gpaVal = document.getElementById('gpa-value');
+      const creditsVal = document.getElementById('credits-value');
+      const statusVal = document.getElementById('status-value');
+      const subjectsVal = document.getElementById('subjects-value');
+
+      if (!data) {
+        tbody.innerHTML = '<tr><td colspan="8">No data available</td></tr>';
+        gpaVal.textContent = creditsVal.textContent = statusVal.textContent = subjectsVal.textContent = '-';
+        return;
+      }
+
+      tbody.innerHTML = '';
+      let totalGradePoints = 0;
+      let totalCredits = 0;
+      
+      data.subjects.forEach(subject => {
+        const total = calculateTotal(subject.internal, subject.external);
+        const gradeInfo = calculateGrade(total);
+        const gradeClass = `grade-${gradeInfo.grade.charAt(0)}`;
+        
+        // Calculate weighted grade points
+        const weightedGradePoints = gradeInfo.gradePoint * subject.credits;
+        totalGradePoints += weightedGradePoints;
+        totalCredits += subject.credits;
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${subject.code}</td>
+          <td>${subject.name}</td>
+          <td>${subject.credits}</td>
+          <td>${subject.internal}/25</td>
+          <td>${subject.external}/75</td>
+          <td><strong>${total}/100</strong></td>
+          <td class="${gradeClass}">${gradeInfo.grade}</td>
+          <td>${gradeInfo.gradePoint.toFixed(2)}</td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      // Calculate GPA as weighted average
+      const gpa = totalCredits > 0 ? totalGradePoints / totalCredits : 0;
+      
+      gpaVal.textContent = gpa.toFixed(2);
+      creditsVal.textContent = totalCredits;
+      statusVal.textContent = gpa >= 2.0 ? 'Passed' : 'Failed';
+      subjectsVal.textContent = data.subjects.length;
+    }
+
+    document.getElementById('semester').addEventListener('change', function () {
+      updateResults(parseInt(this.value));
+    });
+
+    updateResults(1); // Default semester
+
+    function printResults() {
+      window.print();
+    }
+
+    function downloadPDF() {
+      alert('Download PDF feature not implemented yet.');
+    }
+
+    function viewHistory() {
+      alert('View History feature not implemented yet.');
+    }
+  </script>
+  <script src="auth.js"></script>
+</body>
+</html>

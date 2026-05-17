@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nepali Calendar - हाम्रो नेपाली पात्रो</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 240px;
+      background-color: #1a1d2b;
+      color: white;
+      padding: 30px 0;
+      height: 100vh;
+      position: fixed;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .logo img {
+      width: 140px;
+      height: auto;
+      display: inline-block;
+    }
+
+    .logo a {
+      text-decoration: none;
+    }
+
+    .logo a:hover {
+      opacity: 0.8;
+    }
+
+    .sidebar a {
+      font-weight: bold;
+      display: block;
+      padding: 15px 30px;
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: white;
+      background-color: #2a2d40;
+    }
+
+    .main-content {
+      margin-left: 240px;
+      padding: 40px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .calendar-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .calendar-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .calendar-nav {
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: #4A90E2;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+
+    .nav-btn:hover {
+      background: #357abd;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .calendar-day-header {
+      background: #4A90E2;
+      color: white;
+      padding: 15px 10px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .calendar-day {
+      background: white;
+      padding: 15px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      position: relative;
+      min-height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .calendar-day:hover {
+      background: #f8f9fa;
+    }
+
+    .calendar-day.other-month {
+      color: #ccc;
+      background: #fafafa;
+    }
+
+    .calendar-day.today {
+      background: #fff3cd;
+      color: #856404;
+      font-weight: bold;
+    }
+
+    .calendar-day.holiday {
+      background: #f8d7da;
+      color: #721c24;
+      font-weight: bold;
+    }
+
+    .calendar-day.selected {
+      background: #4A90E2;
+      color: white;
+    }
+
+    .day-number {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .holiday-indicator {
+      font-size: 10px;
+      margin-top: 2px;
+      opacity: 0.8;
+    }
+
+    .logout-btn {
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      width: 100%;
+      text-align: left;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+    }
+
+    .logout-btn:hover {
+      background-color: #b71c1c;
+    }
+
+    .calendar-info {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .calendar-info h3 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+
+    .legend-color {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
+      
+      .sidebar {
+        display: none;
+      }
+      
+      .calendar-container {
+        padding: 20px;
+      }
+      
+      .calendar-day {
+        padding: 10px 5px;
+        min-height: 50px;
+      }
+      
+      .day-number {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="logo">
+    <a href="dashboard_mis.html"><img src="https://student.uniglobecollege.edu.np/Content/img/Uniglobelogo.png" alt="Logo"></a>
+  </div>
+  <a href="dashboard_mis.html">Profile</a>
+  <a href="attendance.html">Attendance</a>
+  <a href="assignment.html">Assignments</a>
+  <a href="calender_mis.html" class="active">Calendar</a>
+  <a href="Result_mis.html">Exam Result</a>
+  <button class="logout-btn">Logout</button>
+</div>
+
+<main class="main-content">
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <h1 class="calendar-title" id="calendar-title">साउन २०८२</h1>
+      <div class="calendar-nav">
+        <button class="nav-btn" onclick="previousMonth()">←</button>
+        <button class="nav-btn" onclick="nextMonth()">→</button>
+      </div>
+    </div>
+
+    <div class="calendar-grid" id="calendar-grid">
+      <!-- Calendar will be generated by JavaScript -->
+    </div>
+
+    <div class="calendar-info">
+      <h3>पात्रो जानकारी</h3>
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-color" style="background: #fff3cd;"></div>
+          <span>आज</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: #f8d7da;"></div>
+          <span>छुट्टी</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background: #4A90E2;"></div>
+          <span>चयनित</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="auth.js"></script>
+<script>
+let currentBSYear = 2082;
+let currentBSMonth = 3; // साउन (Shrawan)
+
+const nepaliMonths = [
+  'वैशाख', 'जेठ', 'असार', 'साउन', 'भदौ', 'असोज',
+  'कार्तिक', 'मंसिर', 'पुष', 'माघ', 'फागुन', 'चैत'
+];
+
+const nepaliDays = ['आइत', 'सोम', 'मंगल', 'बुध', 'बिहि', 'शुक्र', 'शनि'];
+
+// BS Calendar data for 2082
+const bsCalendar2082 = {
+  0: 30, 1: 29, 2: 30, 3: 30, 4: 29, 5: 30, 6: 29, 7: 30, 8: 29, 9: 30, 10: 29, 11: 30
+};
+
+// Starting days for each month in BS 2082
+const startDays2082 = [6, 1, 4, 6, 2, 5, 0, 3, 5, 1, 4, 6];
+
+// Nepali holidays for 2082
+const nepaliHolidays = {
+  '2082-3-3': 'गुरु पूर्णिमा',
+  '2082-3-9': 'जनै पूर्णिमा',
+  '2082-4-1': 'कृष्ण जन्माष्टमी',
+  '2082-4-15': 'इन्द्र जात्रा',
+  '2082-5-1': 'दशैं - पहिलो दिन',
+  '2082-5-2': 'दशैं - दोस्रो दिन',
+  '2082-5-3': 'दशैं - तेस्रो दिन',
+  '2082-5-4': 'दशैं - चौथो दिन',
+  '2082-5-5': 'दशैं - पाँचौं दिन',
+  '2082-5-6': 'दशैं - छैठौं दिन',
+  '2082-5-7': 'दशैं - सातौं दिन',
+  '2082-5-8': 'दशैं - आठौं दिन',
+  '2082-5-9': 'दशैं - नवौं दिन',
+  '2082-5-10': 'दशैं - दसौं दिन',
+  '2082-6-1': 'तिहार - पहिलो दिन',
+  '2082-6-2': 'तिहार - दोस्रो दिन',
+  '2082-6-3': 'तिहार - तेस्रो दिन',
+  '2082-6-4': 'तिहार - चौथो दिन',
+  '2082-6-5': 'तिहार - पाँचौं दिन',
+  '2082-7-15': 'मणि रिम्दु',
+  '2082-8-1': 'क्रिसमस',
+  '2082-9-15': 'माघे सङ्क्रान्ति',
+  '2082-10-15': 'लोसार',
+  '2082-11-1': 'होली',
+  '2082-11-30': 'राम नवमी'
+};
+
+function generateNepaliCalendar(year, month) {
+  const calendarGrid = document.getElementById('calendar-grid');
+  const calendarTitle = document.getElementById('calendar-title');
+  
+  calendarTitle.textContent = `${nepaliMonths[month]} ${year}`;
+  
+  // Clear calendar
+  calendarGrid.innerHTML = '';
+  
+  // Add day headers
+  nepaliDays.forEach(day => {
+    const dayHeader = document.createElement('div');
+    dayHeader.className = 'calendar-day-header';
+    dayHeader.textContent = day;
+    calendarGrid.appendChild(dayHeader);
+  });
+  
+  // Get number of days in month
+  const daysInMonth = bsCalendar2082[month];
+  const startDay = startDays2082[month];
+  
+  // Calculate previous month's days to show
+  const prevMonth = month === 0 ? 11 : month - 1;
+  const prevMonthDays = bsCalendar2082[prevMonth];
+  
+  // Generate calendar days
+  let dayCount = 1;
+  let prevMonthDayCount = prevMonthDays - startDay + 1;
+  
+  for (let i = 0; i < 42; i++) {
+    const dayElement = document.createElement('div');
+    dayElement.className = 'calendar-day';
+    
+    const dayNumber = document.createElement('div');
+    dayNumber.className = 'day-number';
+    
+    // Fill previous month days
+    if (i < startDay) {
+      dayNumber.textContent = prevMonthDayCount;
+      dayElement.classList.add('other-month');
+      prevMonthDayCount++;
+    }
+    // Fill current month days
+    else if (dayCount <= daysInMonth) {
+      dayNumber.textContent = dayCount;
+      
+      // Check if it's today (August 3, 2025 = साउन १८, २०८२)
+      if (month === 3 && dayCount === 18 && year === 2082) {
+        dayElement.classList.add('today');
+      }
+      
+      // Check if it's a holiday
+      const dateKey = `${year}-${month + 1}-${dayCount}`;
+      if (nepaliHolidays[dateKey]) {
+        dayElement.classList.add('holiday');
+        const holidayIndicator = document.createElement('div');
+        holidayIndicator.className = 'holiday-indicator';
+        holidayIndicator.textContent = nepaliHolidays[dateKey];
+        dayElement.appendChild(holidayIndicator);
+      }
+      
+      dayCount++;
+    }
+    // Fill next month days
+    else {
+      dayNumber.textContent = dayCount - daysInMonth;
+      dayElement.classList.add('other-month');
+      dayCount++;
+    }
+    
+    dayElement.appendChild(dayNumber);
+    
+    // Add click event
+    dayElement.addEventListener('click', () => {
+      selectDate(year, month, parseInt(dayNumber.textContent));
+    });
+    
+    calendarGrid.appendChild(dayElement);
+  }
+}
+
+function selectDate(year, month, day) {
+  // Remove previous selection
+  const selectedElements = document.querySelectorAll('.calendar-day.selected');
+  selectedElements.forEach(el => el.classList.remove('selected'));
+  
+  // Add selection to clicked date
+  const dayElements = document.querySelectorAll('.calendar-day:not(.calendar-day-header)');
+  dayElements.forEach(element => {
+    const dayText = element.querySelector('.day-number').textContent;
+    if (parseInt(dayText) === day && !element.classList.contains('other-month')) {
+      element.classList.add('selected');
+    }
+  });
+  
+  // Show date info
+  const dateKey = `${year}-${month + 1}-${day}`;
+  const holidayInfo = nepaliHolidays[dateKey];
+  const nepaliDate = `${nepaliMonths[month]} ${day}, ${year}`;
+  
+  if (holidayInfo) {
+    alert(`चयनित मिति: ${nepaliDate}\nछुट्टी: ${holidayInfo}`);
+  } else {
+    alert(`चयनित मिति: ${nepaliDate}`);
+  }
+}
+
+function previousMonth() {
+  currentBSMonth--;
+  if (currentBSMonth < 0) {
+    currentBSMonth = 11;
+    currentBSYear--;
+  }
+  generateNepaliCalendar(currentBSYear, currentBSMonth);
+}
+
+function nextMonth() {
+  currentBSMonth++;
+  if (currentBSMonth > 11) {
+    currentBSMonth = 0;
+    currentBSYear++;
+  }
+  generateNepaliCalendar(currentBSYear, currentBSMonth);
+}
+
+// Initialize calendar
+document.addEventListener('DOMContentLoaded', function() {
+  if (!requireAuth()) {
+    return;
+  }
+  generateNepaliCalendar(currentBSYear, currentBSMonth);
+});
+</script>
+</body>
+</html>

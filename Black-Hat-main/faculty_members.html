@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faculty Members - Uniglobe SS College</title>
+
+  <!-- Google Fonts and Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+       .top-bar {
+         width: 100%;
+         height: 8px;
+         background: linear-gradient(90deg, #8dc63f 40%, #2a348d 60%);
+         position: relative;
+         margin-top: 0;
+         z-index: 20;
+       }
+
+      body {
+        padding-top: 0; 
+      }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f8fafc;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 0;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2563eb;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #2563eb;
+    }
+
+    .back-btn {
+      background: #2563eb;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Faculty Sections */
+    .faculty-section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      color: #1e293b;
+    }
+
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .faculty-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .faculty-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+
+    .faculty-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+                                                                                                                                                               .faculty-photo {
+         width: 140px;
+         height: 140px;
+         border-radius: 50%;
+         margin: 0 auto 1.5rem;
+         overflow: hidden;
+         position: relative;
+       }
+
+       .faculty-photo img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         border-radius: 50%;
+         position: absolute;
+         top: 0;
+         left: 0;
+       }
+
+    .faculty-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #1e293b;
+    }
+
+    .faculty-position {
+      color: #2563eb;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .faculty-description {
+      color: #64748b;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: #1e293b;
+      color: white;
+      padding: 40px 0 20px;
+      text-align: center;
+    }
+
+    .footer p {
+      opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .faculty-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+             <div class="nav-logo">
+         <img src="Uniglobelogo.png" alt="Uniglobe Logo" style="height: 40px; width: auto; margin-right: 10px;">
+    
+       </div>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html#features" class="nav-link">Features</a></li>
+        <li><a href="index.html#about" class="nav-link">About</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="top-bar"></div>
+
+  
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+      </a>
+      <h1>Head of Departments</h1>
+      <p>Meet our dedicated and experienced faculty members who are committed to academic excellence and student success across all streams.</p>
+    </div>
+  </header>
+
+  <!-- Faculty Members -->
+  <section class="faculty-section">
+    <div class="container">
+      <h2 class="section-title">Head of Departments of Science</h2>
+      <div class="faculty-grid">
+                                   <div class="faculty-card">
+                       <div class="faculty-photo">
+               <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/05/Tara-Gurung.png" alt="Mr. Tara Bahadur Gurung">
+             </div>
+          <h3 class="faculty-name">Mr. Tara Bahadur Gurung</h3>
+          <p class="faculty-position">Head of Department (Biology)</p>
+          <p class="faculty-description">Experienced biology educator with expertise in molecular biology and laboratory techniques. Dedicated to providing quality education in biological sciences and research methodologies.</p>
+        </div>
+                                   <div class="faculty-card">
+                       <div class="faculty-photo">
+               <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/05/Jaya-Ram-Ghimire.png" alt="Mr. Jaya Ram Ghimire">
+             </div>
+          <h3 class="faculty-name">Mr. Jaya Ram Ghimire</h3>
+          <p class="faculty-position">Head of Department (Chemistry)</p>
+          <p class="faculty-description">Chemistry specialist with expertise in organic chemistry and analytical techniques. Brings practical laboratory experience to enhance students' understanding of chemical principles.</p>
+        </div>
+        <div class="faculty-card">
+                     <div class="faculty-photo">
+             <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/05/Devendra-Khadka.png" alt="Mr. Devendra Khadka">
+           </div>
+          <h3 class="faculty-name">Mr. Devendra Khadka</h3>
+          <p class="faculty-position">Head of Department (Physics)</p>
+          <p class="faculty-description">Physics educator with specialization in mechanics and modern physics. Combines theoretical knowledge with practical experiments to make physics engaging and accessible.</p>
+        </div>
+        <div class="faculty-card">
+          <div class="faculty-photo">
+            <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/05/Agni-Joshi.png" alt="Mr. Agni Datt Joshi">
+          </div>
+          <h3 class="faculty-name">Mr. Agni Datt Joshi</h3>
+          <p class="faculty-position">Head of Department (Mathematics)</p>
+          <p class="faculty-description">Mathematics educator with a passion for making complex mathematical concepts accessible. Focuses on developing logical thinking and problem-solving skills.</p>
+        </div>
+        <div class="faculty-card">
+          <div class="faculty-photo">
+            <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/05/Chudamani-Pandey.png" alt="Dr. Chudamani Pandey">
+          </div>
+          <h3 class="faculty-name">Dr. Chudamani Pandey</h3>
+          <p class="faculty-position">Head of Department (Nepali)</p>
+          <p class="faculty-description">PhD holder with extensive knowledge in Nepali literature and language. Committed to preserving cultural heritage while promoting modern educational approaches.</p>
+        </div>
+        <div class="faculty-card">
+          <div class="faculty-photo">
+            <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/05/Navin-Gurung.png" alt="Mr. Navin Gurung">
+          </div>
+          <h3 class="faculty-name">Mr. Navin Gurung</h3>
+          <p class="faculty-position">Head of Department (Computer Science)</p>
+          <p class="faculty-description">Technology expert specializing in programming, software development, and emerging technologies. Prepares students for the rapidly evolving digital landscape.</p>
+        </div>
+        <div class="faculty-card">
+          <div class="faculty-photo">
+            <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/12/Mahabir-Sir.png" alt="Mr. Mahabir Paudyal">
+          </div>
+          <h3 class="faculty-name">Mr. Mahabir Paudyal</h3>
+          <p class="faculty-position">Head of Department (English)</p>
+          <p class="faculty-description">English language specialist with expertise in literature and communication skills. Dedicated to developing students' proficiency in English for academic and professional success.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+</header>
+
+ <!-- Faculty Members -->
+ <section class="faculty-section">
+ <div class="container">
+   <h2 class="section-title">Head of Departments of Management</h2>
+   <div class="faculty-grid">
+     <div class="faculty-card">
+       <div class="faculty-photo">
+         <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/06/Khagendra-Dhakal.png" alt="Mr. Khagendra Dhakal">
+       </div>
+       <h3 class="faculty-name">Mr. Khagendra Dhakal</h3>
+       <p class="faculty-position">Head of Department (Accounting)</p>
+       <p class="faculty-description">Experienced accounting professional with expertise in financial management and auditing. Dedicated to providing quality education in accounting principles and practices.</p>
+     </div>
+     <div class="faculty-card">
+       <div class="faculty-photo">
+         <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/12/Yadav-Gautam.png" alt="Mr. Yadab Gautam">
+       </div>
+       <h3 class="faculty-name">Mr. Yadab Gautam</h3>
+       <p class="faculty-position">Head of Department (Economics)</p>
+       <p class="faculty-description">Economics specialist with expertise in economic theory and policy analysis. Brings practical insights from both academic research and real-world economic applications to the classroom.</p>
+     </div>
+     <div class="faculty-card">
+       <div class="faculty-photo">
+         <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/06/Narayan-pokhrel.png" alt="Mr. Narayan Pokharel">
+       </div>
+       <h3 class="faculty-name">Mr. Narayan Pokharel</h3>
+       <p class="faculty-position">Head of Department (Business Studies)</p>
+       <p class="faculty-description">Business management expert with specialization in strategic planning and organizational development. Combines theoretical knowledge with practical business experience.</p>
+     </div>
+     <div class="faculty-card">
+       <div class="faculty-photo">
+         <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/05/Agni-Joshi.png" alt="Mr. Agni Datt Joshi">
+       </div>
+       <h3 class="faculty-name">Mr. Agni Datt Joshi</h3>
+       <p class="faculty-position">Head of Department (Mathematics)</p>
+       <p class="faculty-description">Mathematics educator with a passion for making complex mathematical concepts accessible. Focuses on developing logical thinking and problem-solving skills.</p>
+     </div>
+     <div class="faculty-card">
+       <div class="faculty-photo">
+         <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/05/Chudamani-Pandey.png" alt="Dr. Chudamani Pandey">
+       </div>
+       <h3 class="faculty-name">Dr. Chudamani Pandey</h3>
+       <p class="faculty-position">Head of Department (Nepali)</p>
+       <p class="faculty-description">PhD holder with extensive knowledge in Nepali literature and language. Committed to preserving cultural heritage while promoting modern educational approaches.</p>
+     </div>
+     <div class="faculty-card">
+       <div class="faculty-photo">
+         <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/05/Navin-Gurung.png" alt="Mr. Navin Gurung">
+       </div>
+       <h3 class="faculty-name">Mr. Navin Gurung</h3>
+       <p class="faculty-position">Head of Department (Computer Science)</p>
+       <p class="faculty-description">Technology expert specializing in programming, software development, and emerging technologies. Prepares students for the rapidly evolving digital landscape.</p>
+     </div>
+     <div class="faculty-card">
+       <div class="faculty-photo">
+         <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/12/Mahabir-Sir.png" alt="Mr. Mahabir Paudyal">
+       </div>
+       <h3 class="faculty-name">Mr. Mahabir Paudyal</h3>
+       <p class="faculty-position">Head of Department (English)</p>
+       <p class="faculty-description">English language specialist with expertise in literature and communication skills. Dedicated to developing students' proficiency in English for academic and professional success.</p>
+     </div>
+     <div class="faculty-card">
+       <div class="faculty-photo">
+         <img src="https://uniglobecollege.edu.np/wp-content/uploads/2024/06/Bir-Bahadur.png" alt="Bir Bahadur Chhetri">
+       </div>
+       <h3 class="faculty-name">Bir Bahadur Chhetri</h3>
+       <p class="faculty-position">Head of Department (HM&TMS)</p>
+       <p class="faculty-description">Specialist in Hotel Management and Tourism Management Systems. Brings industry experience and practical knowledge to prepare students for careers in hospitality and tourism.</p>
+     </div>
+   </div>
+ </div>
+ </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Uniglobe SS College — All rights reserved</p>
+    </div>
+  </footer>
+</body>
+</html> 

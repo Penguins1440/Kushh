@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Management Courses - Uniglobe SS College</title>
+  
+  <!-- Google Fonts and Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  
+  <style>
+                    .top-bar {
+         width: 100%;
+         height: 8px;
+         background: linear-gradient(90deg, #8dc63f 40%, #2a348d 60%);
+         position: relative;
+         margin-top: 0;
+         z-index: 20;
+       }
+       * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    .nav {
+      background: white;
+      padding: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-logo img {
+      width: 120px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #667eea;
+    }
+
+    /* Header Section */
+    .header-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 4rem 0 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.1)" points="0,1000 1000,0 1000,1000"/></svg>');
+      background-size: cover;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .header-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Back Button */
+    .back-button {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #1e293b;
+      text-align: center;
+    }
+
+    /* Course Grid */
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border: 1px solid #e2e8f0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+
+    .course-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .course-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: white;
+      font-size: 2rem;
+    }
+
+    .course-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1e293b;
+    }
+
+    .course-description {
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .course-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .course-credits {
+      color: #667eea;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .course-semester {
+      background: #f1f5f9;
+      color: #64748b;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Grade Sections */
+    .grade-section {
+      margin-bottom: 3rem;
+    }
+
+    .grade-header {
+      background: linear-gradient(135deg, #8dc63f 0%, #2a348d 100%);
+      color: white;
+      padding: 1.5rem 2rem;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .grade-header h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 0.75rem 2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #5a67d8;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .header-title {
+        font-size: 2rem;
+      }
+
+      .back-button {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin-bottom: 2rem;
+      }
+
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <img src="https://student.uniglobecollege.edu.np/Content/img/Uniglobelogo.png" alt="Uniglobe Logo">
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dashboard_mis.html">Dashboard</a></li>
+          <li><a href="program_management.html">Programs</a></li>
+          <li><a href="login_mis.html">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="top-bar"></div>
+
+  <!-- Header Section -->
+  <section class="header-section">
+    <div class="container">
+      <a href="program_management.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        Back to Programs
+      </a>
+      <div class="header-content">
+        <h1 class="header-title">Management Courses</h1>
+        <p class="header-subtitle">Business and management education preparing students for leadership roles in various industries with focus on entrepreneurship, finance, and organizational management.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Grade XI Section -->
+      <section class="grade-section">
+        <div class="grade-header">
+          <h2>Grade XI Courses</h2>
+        </div>
+        <div class="course-grid">
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-language"></i>
+            </div>
+            <h3 class="course-title">Comp. English</h3>
+            <p class="course-description">
+              Business English communication skills, professional writing, and presentation techniques. 
+              Focuses on corporate communication, report writing, and business correspondence.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">4 Credits</span>
+              <span class="course-semester">Core Subject</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h3 class="course-title">Comp. Nepali</h3>
+            <p class="course-description">
+              Nepali language and literature with focus on business communication and cultural context. 
+              Includes study of Nepali business practices and corporate culture.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">4 Credits</span>
+              <span class="course-semester">Core Subject</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3 class="course-title">Social Studies and Life Skills Education</h3>
+            <p class="course-description">
+              Social sciences with emphasis on business ethics, corporate social responsibility, and leadership development. 
+              Focuses on interpersonal skills and team management.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">3 Credits</span>
+              <span class="course-semester">Core Subject</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="course-title">Business Studies</h3>
+            <p class="course-description">
+              Introduction to business concepts, organizational structures, and management principles. 
+              Covers business environment, marketing basics, and operational management.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">5 Credits</span>
+              <span class="course-semester">Major Subject</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <h3 class="course-title">Accountancy</h3>
+            <p class="course-description">
+              Fundamental accounting principles, financial statements, and bookkeeping practices. 
+              Includes practical accounting software training and financial analysis.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">5 Credits</span>
+              <span class="course-semester">Major Subject</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-coins"></i>
+            </div>
+            <h3 class="course-title">Economics</h3>
+            <p class="course-description">
+              Economic principles, market structures, and business economics. Covers microeconomics, 
+              macroeconomics, and their application in business decision-making.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">5 Credits</span>
+              <span class="course-semester">Major Subject</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3 class="course-title">Computer Science</h3>
+            <p class="course-description">
+              Business computing, database management, and office applications. Includes business software, 
+              data analysis tools, and digital business solutions.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">4 Credits</span>
+              <span class="course-semester">Major Subject</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grade XII Section -->
+      <section class="grade-section">
+        <div class="grade-header">
+          <h2>Grade XII Courses</h2>
+        </div>
+        <div class="course-grid">
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-language"></i>
+            </div>
+            <h3 class="course-title">Comp. English</h3>
+            <p class="course-description">
+              Advanced business communication, international business English, and professional development. 
+              Prepares students for global business environments and corporate leadership.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">4 Credits</span>
+              <span class="course-semester">Core Subject</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h3 class="course-title">Comp. Nepali</h3>
+            <p class="course-description">
+              Advanced Nepali business communication and corporate literature. Includes business writing, 
+              legal documents, and professional Nepali language skills.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">4 Credits</span>
+              <span class="course-semester">Core Subject</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3 class="course-title">Social Studies and Life Skills Education</h3>
+            <p class="course-description">
+              Advanced social studies with focus on global business trends, international relations, 
+              and advanced leadership skills for business management.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">3 Credits</span>
+              <span class="course-semester">Core Subject</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="course-title">Business Studies</h3>
+            <p class="course-description">
+              Advanced business management, strategic planning, and organizational behavior. 
+              Covers entrepreneurship, business strategy, and corporate governance.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">5 Credits</span>
+              <span class="course-semester">Major Subject</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <h3 class="course-title">Accountancy</h3>
+            <p class="course-description">
+              Advanced accounting principles, financial analysis, and auditing practices. 
+              Includes cost accounting, management accounting, and financial reporting.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">5 Credits</span>
+              <span class="course-semester">Major Subject</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-coins"></i>
+            </div>
+            <h3 class="course-title">Economics</h3>
+            <p class="course-description">
+              Advanced economic theory, international economics, and business economics. 
+              Covers economic policy, trade theory, and economic development.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">5 Credits</span>
+              <span class="course-semester">Major Subject</span>
+            </div>
+          </div>
+
+          <div class="course-card">
+            <div class="course-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3 class="course-title">Computer Science</h3>
+            <p class="course-description">
+              Advanced business computing, enterprise systems, and digital transformation. 
+              Includes business intelligence, e-commerce, and digital marketing tools.
+            </p>
+            <div class="course-meta">
+              <span class="course-credits">4 Credits</span>
+              <span class="course-semester">Major Subject</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html> 

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Program Management - Uniglobe SS College</title>
+  
+  <!-- Google Fonts and Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  
+     <style>
+                   .top-bar {
+         width: 100%;
+         height: 8px;
+         background: linear-gradient(90deg, #8dc63f 40%, #2a348d 60%);
+         position: relative;
+         margin-top: 0;
+         z-index: 20;
+       }
+
+      body {
+        padding-top: 0; 
+      }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    .nav {
+      background: white;
+      padding: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-logo img {
+      width: 120px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #667eea;
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #1e293b;
+      text-align: center;
+    }
+
+    /* Program Cards */
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .program-card {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .program-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+
+    .program-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .program-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .program-icon i {
+      font-size: 2rem;
+      color: white;
+    }
+
+    .program-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #1e293b;
+    }
+
+    .program-description {
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .program-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .program-stat {
+      text-align: center;
+      padding: 0.5rem;
+      background: #f1f5f9;
+      border-radius: 8px;
+    }
+
+    .program-stat-number {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    .program-stat-label {
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .program-actions {
+      display: flex;
+      width: 100%;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #5a67d8;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: #64748b;
+      border: 1px solid #e2e8f0;
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+      color: #475569;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      margin-bottom: 3rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #667eea;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .program-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <img src="https://student.uniglobecollege.edu.np/Content/img/Uniglobelogo.png" alt="Uniglobe Logo">
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="dashboard_mis.html">Dashboard</a></li>
+          <li><a href="event_management.html">Event Management</a></li>
+          <li><a href="login_mis.html">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Green and Blue Horizontal Line -->
+  <div class="top-bar"></div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Stats Section -->
+      <section class="stats-section">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Active Programs</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number">84</div>
+            <div class="stat-label">Faculty Members</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">2000+</div>
+            <div class="stat-label">Enrolled Students</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Programs Section -->
+      <section>
+        <h2 class="section-title">Academic Programs</h2>
+        <div class="program-grid">
+          <div class="program-card">
+            <div class="program-icon">
+              <i class="fas fa-flask"></i>
+            </div>
+            <h3 class="program-title">Science Program</h3>
+            <p class="program-description">
+              Comprehensive science education with practical laboratory work, research opportunities, 
+              and preparation for higher studies in medical, engineering, and pure sciences.
+            </p>
+            <div class="program-stats">
+              <div class="program-stat">
+                <div class="program-stat-number">7</div>
+                <div class="program-stat-label">Subjects</div>
+              </div>
+              <div class="program-stat">
+                <div class="program-stat-number">1400+</div>
+                <div class="program-stat-label">Students</div>
+              </div>
+              <div class="program-stat">
+                <div class="program-stat-number">51</div>
+                <div class="program-stat-label">Faculty</div>
+              </div>
+            </div>
+            <div class="program-actions">
+              <a href="science_courses.html" class="btn btn-primary">View Courses</a>
+            </div>
+          </div>
+
+          <div class="program-card">
+            <div class="program-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="program-title">Management Program</h3>
+            <p class="program-description">
+              Business and management education preparing students for leadership roles in various 
+              industries with focus on entrepreneurship, finance, and organizational management.
+            </p>
+            <div class="program-stats">
+              <div class="program-stat">
+                <div class="program-stat-number">10</div>
+                <div class="program-stat-label">Subjects</div>
+              </div>
+              <div class="program-stat">
+                <div class="program-stat-number">1000+</div>
+                <div class="program-stat-label">Students</div>
+              </div>
+              <div class="program-stat">
+                <div class="program-stat-number">21</div>
+                <div class="program-stat-label">Faculty</div>
+              </div>
+            </div>
+            <div class="program-actions">
+              <a href="management_courses.html" class="btn btn-primary">View Courses</a>
+            </div>
+          </div>
+
+          <div class="program-card">
+            <div class="program-icon">
+              <i class="fas fa-balance-scale"></i>
+            </div>
+            <h3 class="program-title">Law Program</h3>
+            <p class="program-description">
+              Comprehensive legal education covering constitutional law, civil procedures, 
+              criminal law, and legal practice with moot court sessions and internships.
+            </p>
+            <div class="program-stats">
+              <div class="program-stat">
+                <div class="program-stat-number">6</div>
+                <div class="program-stat-label">Subjects</div>
+              </div>
+              <div class="program-stat">
+                <div class="program-stat-number">200+</div>
+                <div class="program-stat-label">Students</div>
+              </div>
+              <div class="program-stat">
+                <div class="program-stat-number">12</div>
+                <div class="program-stat-label">Faculty</div>
+              </div>
+            </div>
+            <div class="program-actions">
+              <a href="law_courses.html" class="btn btn-primary">View Courses</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+</body>
+</html> 

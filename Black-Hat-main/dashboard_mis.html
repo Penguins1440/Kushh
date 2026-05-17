@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+ .top-bar {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, #8dc63f 40%, #2a348d 40%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+  }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      height: 100vh;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .logo img {
+      width: 140px;
+      height: auto;
+      display: inline-block;
+    }
+
+    .logo a {
+      text-decoration: none;
+    }
+
+    .logo a:hover {
+      opacity: 0.8;
+    }
+
+    .sidebar {
+      width: 240px;
+      background-color: #1a1d2b;
+      color: white;
+      padding: 30px 0;
+      height: 100vh;
+      position: fixed;
+    }
+
+    .sidebar a {
+      font-weight: bold;
+      display: block;
+      padding: 15px 30px;
+      color: #ccc;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #2a2f3e;
+      color: white;
+    }
+
+    .sidebar a.active {
+      background-color: #2a348d;
+      color: white;
+    }
+
+    .logout-btn {
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      width: 100%;
+      text-align: left;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+    }
+
+    .logout-btn:hover {
+      background-color: #b71c1c;
+    }
+
+    .main {
+      margin-left: 240px;
+      padding: 40px;
+      width: 100%;
+      overflow-y: auto;
+    }
+
+    .profile-header {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 40px;
+    }
+
+    .profile-header img {
+      width: 110px;
+      height: 140px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid #ddd;
+    }
+
+    .info-block h2 {
+      margin-bottom: 10px;
+    }
+
+    .info-block p {
+      margin: 5px 0;
+      color: #333;
+    }
+
+    h3 {
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .info-item {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .info-item label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .info-item input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      background-color: #fdfdfd;
+    }
+
+    .info-item input:focus {
+      border-color: #007bff;
+      outline: none;
+      background-color: #f0f8ff;
+    }
+
+    .edit-btn {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 25px;
+    }
+
+    .edit-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .welcome-message {
+      background-color: #e3f2fd;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 4px solid #2196f3;
+    }
+
+    .welcome-message h4 {
+      color: #1976d2;
+      margin-bottom: 5px;
+    }
+
+    .welcome-message p {
+      color: #424242;
+      margin: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="logo">
+      <a href="dashboard_mis.html">
+        <img src="https://student.uniglobecollege.edu.np/Content/img/Uniglobelogo.png" alt="Logo">
+      </a>
+    </div>
+    <a href="dashboard_mis.html" class="active">Profile</a>
+    <a href="attendance.html">Attendance</a>
+    <a href="assignment.html">Assignments</a>
+    <a href="calender_mis.html">Calendar</a>
+    <a href="Result_mis.html">Exam Result</a>
+    <button class="logout-btn">Logout</button>
+  </div>
+
+  <div class="main">
+    <div id="welcomeMessage" class="welcome-message" style="display: none;">
+      <h4>Welcome back!</h4>
+      <p id="userInfo"></p>
+    </div>
+
+    <div class="profile-header">
+      <img src="https://cdn-icons-png.flaticon.com/512/3704/3704101.png" alt="Student Photo">
+      <div class="info-block">
+        <h2 id="studentName" data-student-name="">Yuganta Ghimire</h2>
+        <p><strong>Symbol No:</strong> <span data-symbol-no="">27518112118</span></p>
+        <p><strong>Program:</strong> <span data-program="">Science</span></p>
+        <p><strong>Batch:</strong> <span data-batch="">2081/82</span></p>
+        <p><strong>Board:</strong> <span data-board="">National Examinations Board</span></p>
+        <p><strong>SEE GPA:</strong> <span data-see-gpa="">3.78</span></p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Personal Details</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Full Name</label>
+          <input type="text" value="Yuganta Ghimire" disabled data-student-name="">
+        </div>
+        <div class="info-item">
+          <label>In Devanagari</label>
+          <input type="text" value="युगान्त घिमिरे" disabled>
+        </div>
+        <div class="info-item">
+          <label>DOB</label>
+          <input type="date" value="2008-05-04" disabled>
+        </div>
+        <div class="info-item">
+          <label>Gender</label>
+          <input type="text" value="Male" disabled>
+        </div>
+        <div class="info-item">
+          <label>Mobile</label>
+          <input type="text" value="9841281402" disabled>
+        </div>
+        <div class="info-item">
+          <label>Email</label>
+          <input type="email" value="yugantaghimire81@uniglobecollege.edu.np" disabled data-email="">
+        </div>
+        <div class="info-item">
+          <label>Nationality</label>
+          <input type="text" value="Nepali" disabled>
+        </div>
+        <div class="info-item">
+          <label>Nearest Bus Station</label>
+          <input type="text" value="—" disabled>
+        </div>
+      </div>
+      <button type="button" class="edit-btn">Edit</button>
+    </div>
+
+    <div class="section">
+      <h3>Parent's Details</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Father's Name</label>
+          <input type="text" value="Bijaya Kanta Ghimire" disabled>
+        </div>
+        <div class="info-item" >
+          <label allign="left">Father's Occupation</label>
+          <input type="text" value="Businessman" disabled>
+        </div>
+        <div class="info-item">
+          
+          <label>Mother's Name</label>
+          <input type="text" value="Sita Adhikari" disabled>
+        </div>
+        <div class="info-item">
+          <label>Mother's Occupation</label>
+          <input type="text" value="Teacher" disabled>
+        </div>
+      </div>
+      <button type="button" class="edit-btn">Edit</button>
+    </div>
+
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    // Display welcome message when user is logged in
+    document.addEventListener('DOMContentLoaded', function() {
+      const user = getCurrentUser();
+      if (user) {
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const userInfo = document.getElementById('userInfo');
+        
+        welcomeMessage.style.display = 'block';
+        userInfo.textContent = `Welcome, ${user.name}! You logged in at ${new Date(user.loginTime).toLocaleString()}`;
+      }
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reset Password</title>
+  <style>
+    .top-bar {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, #8dc63f 40%, #2a348d 60%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+  }
+
+  body {
+  font-family: Arial, sans-serif;
+  background-color: #eee;
+  margin: 0;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+    .reset-container {
+      background-color: white;
+      width: 350px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .reset-container h2 {
+      margin-bottom: 10px;
+    }
+
+    .reset-container p {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .reset-container input[type="email"],
+    .reset-container input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .reset-container input[type="submit"] {
+      background-color: #2b2b2b;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .reset-container input[type="submit"]:hover {
+      background-color: #444;
+    }
+
+    .back-link {
+      margin-top: 20px;
+      display: block;
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    
+  .bottom-bar {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, #8dc63f 40%, #2a348d 60%);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+  }
+  </style>
+</head>
+<body>
+      <div class="top-bar"></div>
+  <div class="reset-container">
+    <h2>Reset Password</h2>
+    <p>Enter your email to receive a password reset link.</p>
+    <form id="resetForm" action="#" method="POST">
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <input type="submit" value="Send Reset Link">
+    </form>
+    <a href="login_mis.html" class="back-link">Back to Login</a>
+  </div>
+     <div class="bottom-bar"></div>
+
+<script src="auth.js"></script>
+</body>
+</html>
+

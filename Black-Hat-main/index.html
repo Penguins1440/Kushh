@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uniglobe SS College - Management Information System</title>
+
+  <!-- Google Fonts and Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    /* Uniglobe College Theme Colors */
+    :root {
+      --primary-green: #8BC53F;
+      --primary-blue: #1B3584;
+      --secondary-blue: #2563eb;
+      --accent-green: #6B9E2F;
+      --text-dark: #1e293b;
+      --text-light: #64748b;
+      --bg-light: #f8fafc;
+      --white: #ffffff;
+    }
+
+    .gradient-line {
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(90deg, var(--primary-green) 40%, var(--primary-blue) 60%);
+      position: fixed;
+      top: 70px;
+      left: 0;
+      z-index: 1001;
+    }
+
+    body {
+      padding-top: 70px; 
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(15px);
+      z-index: 1000;
+      padding: 0.5rem 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+      border-bottom: 2px solid var(--primary-green);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0.5rem 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-green);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(90deg, var(--primary-green), var(--primary-blue));
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .login-btn {
+      background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+      color: white !important;
+      padding: 0.75rem 2rem;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(139, 197, 63, 0.3);
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .login-btn:hover {
+      background: linear-gradient(135deg, var(--accent-green), var(--primary-green));
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(139, 197, 63, 0.4);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background: var(--text-dark);
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 120px 0 80px;
+      background-image: linear-gradient(rgba(27, 53, 132, 0.7), rgba(139, 197, 63, 0.7)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4noDPNmqWg4t_WmpOI-fuD9dJKW9rbIvPng9Uf_2zb-_seQQ_ZlTbmtCuHvQUNZh3vrZkW2XuYYenWd_1dhwxFzgqdE0oDRVfeu_FpFvh6KgzMgxkXw78JLeKhW86xi94Azfwqqc=s1360-w1360-h1020-rw');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(27, 53, 132, 0.8) 0%, rgba(139, 197, 63, 0.8) 100%);
+      z-index: 1;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-size: 4.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 1s ease-out;
+      background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .hero-subtitle {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      animation: fadeInUp 1s ease-out 0.3s both;
+      font-weight: 600;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease-out 0.6s both;
+      line-height: 1.8;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 1s ease-out 0.9s both;
+    }
+
+    .btn {
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+      color: white;
+      box-shadow: 0 8px 25px rgba(139, 197, 63, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--accent-green), var(--primary-green));
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(139, 197, 63, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 3px solid white;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--primary-blue);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Stats Section */
+    .stats {
+      padding: 60px 0;
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+      color: white;
+      position: relative;
+    }
+
+    .stats::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stat-item {
+      padding: 2rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      display: block;
+      background: linear-gradient(135deg, #ffffff, #f0f9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      opacity: 0.95;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Features */
+    .features {
+      padding: 120px 0;
+      background: var(--bg-light);
+      position: relative;
+    }
+
+    .features::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-blue) 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-green), var(--primary-blue));
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.3rem;
+      color: var(--text-light);
+      margin-bottom: 4rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(139, 197, 63, 0.1);
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary-green), var(--primary-blue));
+    }
+
+    .feature-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+      border-color: var(--primary-green);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-blue) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(139, 197, 63, 0.3);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.15) rotate(5deg);
+      box-shadow: 0 15px 40px rgba(139, 197, 63, 0.4);
+    }
+
+    .feature-icon i {
+      font-size: 2.5rem;
+      color: white;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .feature-card p {
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .feature-link {
+      color: var(--primary-green);
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .feature-link:hover {
+      color: var(--primary-blue);
+      transform: translateX(5px);
+    }
+
+    /* About */
+    .about {
+      padding: 80px 0;
+      background-color: #2502bece;
+      position: relative;
+      color: white;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-blue) 100%);
+      clip-path: polygon(0 100%, 100% 50%, 100% 0, 0 0);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-text h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: white;
+      text-align: left;
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .about-text h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-green), var(--accent-green));
+      border-radius: 2px;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+      text-align: left;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .about-image:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(139, 197, 63, 0.2), rgba(27, 53, 132, 0.2));
+      border-radius: 20px;
+      z-index: 1;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 120px 0;
+      background: var(--bg-light);
+      position: relative;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-blue) 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      background: white;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(139, 197, 63, 0.1);
+    }
+
+    .contact-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      border-color: var(--primary-green);
+    }
+
+    .contact-item i {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+      box-shadow: 0 8px 25px rgba(139, 197, 63, 0.3);
+    }
+
+    .contact-item div h3 {
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+      font-size: 1.3rem;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .contact-item div p {
+      color: var(--text-light);
+      margin: 0;
+      font-size: 1.1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--text-dark) 100%);
+      color: white;
+      padding: 100px 0 30px;
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-blue) 100%);
+      clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 4rem;
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-logo img {
+      width: 200px;
+      margin-bottom: 1.5rem;
+      filter: none ;
+    }
+
+    .footer-section h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--primary-green);
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--primary-green);
+      border-radius: 2px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 1rem;
+    }
+
+    .footer-section ul li a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+      padding: 0.3rem 0;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .footer-section ul li a:hover {
+      color: var(--primary-green);
+      transform: translateX(8px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .social-links a {
+      width: 55px;
+      height: 55px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.3rem;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .social-links a:hover {
+      background: var(--primary-green);
+      transform: translateY(-5px);
+      border-color: var(--primary-green);
+      box-shadow: 0 8px 25px rgba(139, 197, 63, 0.4);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #9ca3af;
+      position: relative;
+      z-index: 2;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        background-attachment: scroll;
+        padding: 100px 0 60px;
+        min-height: auto;
+      }
+
+      .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);
+        padding: 2rem 0;
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .about-text h2 {
+        text-align: center;
+        font-size: 2rem;
+      }
+
+      .about-text h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+      }
+
+      .about-text p {
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .about-image img {
+        height: 300px;
+      }
+
+      .btn {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .hero-description {
+        font-size: 1rem;
+        padding: 0 8px;
+      }
+
+      .nav-logo img {
+        width: 90px !important;
+        max-width: 40vw;
+        height: auto;
+      }
+
+      .contact-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+        gap: 1rem;
+      }
+
+      .contact-item i {
+        width: 64px;
+        height: 64px;
+        font-size: 1.5rem;
+      }
+
+      .features,
+      .contact {
+        padding: 80px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.25rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card {
+        padding: 1.5rem;
+      }
+
+      .about-image img {
+        height: 250px;
+      }
+
+      .section-subtitle {
+        font-size: 1rem;
+        padding: 0 4px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .footer-section h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+             <div class="nav-logo">
+         <img src="https://student.uniglobecollege.edu.np/Content/img/Uniglobelogo.png" alt="Uniglobe SS College Logo" style="width: 120px">
+       </div>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#features" class="nav-link">Know Us</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="login_mis.html" class="nav-link login-btn">Login</a></li>
+      </ul>
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Gradient Line -->
+  <div class="gradient-line"></div>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">Uniglobe SS College</h1>
+        <p class="hero-subtitle">Bringing The <br> Best Together</p>
+        <p class="hero-description">
+          Empowering students with cutting-edge education and comprehensive management systems. 
+          Join us in shaping the future of education through innovation and excellence.
+        </p>
+        <div class="hero-buttons">
+          <a href="#features" class="btn btn-primary">Explore Features</a>
+          <a href="#contact" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">2200+</span>
+          <span class="stat-label">Students Enrolled</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">80+</span>
+          <span class="stat-label">Expert Faculty</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Excellence</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+<section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Know Us</h2>
+      <p class="section-subtitle">
+        Discover our comprehensive management solutions designed to streamline educational processes 
+        and enhance student experience.
+      </p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-users"></i></div>
+          <h3>Student Management</h3>
+          <p>Comprehensive student records, enrollment tracking, and academic progress monitoring with real-time updates and personalized dashboards.</p>
+          <a href="login_mis.html" class="feature-link">Access Portal →</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
+          <h3>Event Management</h3>
+          <p>Schedule and manage academic events, meetings, and activities with integrated calendar systems and automated notifications.</p>
+          <a href="event_management.html" class="feature-link">View Events →</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+          <h3>Program Management</h3>
+          <p>Organize courses, schedules, and curriculum planning efficiently with advanced tools for academic program coordination.</p>
+          <a href="program_management.html" class="feature-link">View Programs →</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-user-graduate"></i></div>
+          <h3>Faculty Members</h3>
+          <p>Explore our esteemed faculty across Science, Management, and Law streams.</p>
+          <a href="faculty_members.html" class="feature-link">Meet Faculty →</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-question-circle"></i></div>
+          <h3>Why Uniglobe?</h3>
+          <p>Discover the reasons students choose Uniglobe for excellence, innovation, and leadership.</p>
+          <a href="why_uniglobe.html" class="feature-link">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>About Our College</h2>
+          <p>
+            Uniglobe Secondary School, located in Kathmandu, Nepal, offers +2 programs in Science, Management, and Law. 
+            Founded by experienced educators, the School aims to provide students with a relevant and up-to-date education 
+            that prepares them for success in the 21st century.
+          </p>
+          <p>
+            Uniglobe Secondary School believes in fostering a supportive and collaborative learning environment. 
+            Our dedicated faculty and staff work together to guide students not only academically but also in developing 
+            critical thinking and social responsibility. We are committed to excellence in education and innovation in learning.
+          </p>
+        </div>
+        <div class="about-image">
+          <img src="Uniglobe College Campus Life.png">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-subtitle">
+        Get in touch with us for any inquiries about our programs, facilities, or admission process.
+      </p>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <p>info@uniglobecollege.edu.np</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div>
+              <h3>Phone</h3>
+              <p>01-5321875, 01-5320722, 01-5351409</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Address</h3>
+              <p>Kamaladi, Ganeshthan Kathmandu, Nepal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <img src="Uniglobelogo.png" alt="Uniglobe SS College Logo" style="width: 200px" />
+          </div>
+          <p>Empowering educational institutions with innovative management solutions and cutting-edge technology to create the leaders of tomorrow.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Programs</h3>
+          <ul>
+            <li><a href="science_courses.html">Science</a></li>
+            <li><a href="management_courses.html">Management</a></li>
+            <li><a href="law_courses.html">Law</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="https://www.facebook.com/UniglobeSecondarySchool"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/UniglobeSS"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/school/theuniglobe-ss-college/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/uniglobesecondaryschool/"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Uniglobe — All rights reserved</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
