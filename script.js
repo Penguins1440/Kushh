@@ -195,10 +195,13 @@
         if (entry.isIntersecting && !skillsAnimated) {
           skillsAnimated = true;
           skillCards.forEach((card, i) => {
-            const percent = card.getAttribute('data-skill');
+            const percentEl = card.querySelector('.skill-percent');
+            const percent = percentEl
+              ? parseInt(percentEl.textContent, 10)
+              : parseInt(card.getAttribute('data-skill'), 10);
             const bar = card.querySelector('.skill-progress');
             setTimeout(() => {
-              if (bar) bar.style.width = percent + '%';
+              if (bar && !Number.isNaN(percent)) bar.style.width = percent + '%';
             }, i * 120);
           });
         }
