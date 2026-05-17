@@ -7,8 +7,11 @@
 
   const WHATSAPP_NUMBER = '9779841712132';
   const TYPING_PHRASES = [
+    'Explorer',
     'Web Developer',
-    'UI/UX Designer',
+    'Traveler',
+    'Data Enthusiast',
+    'SongWriter',
     'Creative Technologist',
     'Future Builder'
   ];
