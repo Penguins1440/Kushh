@@ -1251,6 +1251,14 @@ ul {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.project-buttons .btn {
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: center;
+  text-align: center;
 }
 
 /* ---- Contact ---- */
@@ -1563,8 +1571,17 @@ ul {
 
   .projects-grid {
     grid-template-columns: 1fr;
-    max-width: 450px;
+    max-width: min(100%, 560px);
     margin: 0 auto;
+  }
+
+  .project-buttons {
+    flex-direction: column;
+  }
+
+  .project-buttons .btn {
+    width: 100%;
+    flex: 1 1 100%;
   }
 
   .contact-grid {
@@ -1645,6 +1662,21 @@ ul {
   .contact-form {
     padding: 28px;
   }
+
+  .project-content {
+    padding: 20px;
+  }
+
+  .project-image {
+    height: 180px;
+  }
+
+  @media (hover: none) {
+    .project-overlay {
+      opacity: 1;
+      background: rgba(26, 26, 36, 0.5);
+    }
+  }
 }
 
 @media (max-width: 480px) {
@@ -1662,12 +1694,12 @@ ul {
     grid-template-columns: 1fr;
   }
 
-  .project-buttons {
-    flex-direction: column;
+  .project-content h3 {
+    font-size: 1.15rem;
   }
 
-  .project-buttons .btn {
-    width: 100%;
-    justify-content: center;
+  .project-content p {
+    font-size: 0.85rem;
+    margin-bottom: 16px;
   }
 }
