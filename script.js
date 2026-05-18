@@ -282,16 +282,24 @@
         });
 
         if (!response.ok) {
-          throw new Error('Request failed');
+          let detail = '';
+          try {
+            const data = await response.json();
+            detail = data.message || data.hint || '';
+          } catch (_) {
+            /* ignore */
+          }
+          throw new Error(detail || `Request failed (${response.status})`);
         }
 
         contactForm.reset();
         setContactFormStatus('Message sent! I will get back to you soon.', 'success');
       } catch (err) {
-        setContactFormStatus(
-          'Could not send your message. Check your n8n workflow is active and CORS is enabled.',
-          'error'
-        );
+        const hint =
+          err instanceof TypeError
+            ? 'Network or CORS blocked the request. In n8n Webhook, set Allowed Origins to * or your site URL.'
+            : err.message || 'Check that your n8n workflow is Active and using the Production webhook URL.';
+        setContactFormStatus(`Could not send your message. ${hint}`, 'error');
       } finally {
         setContactFormLoading(false);
       }
