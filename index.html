@@ -379,10 +379,11 @@
               <label for="message">Message</label>
               <textarea id="message" name="message" rows="5" placeholder="Write your message..." required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-full">
-              <span>Send via WhatsApp</span>
-              <i class="fab fa-whatsapp"></i>
+            <button type="submit" class="btn btn-primary btn-full" id="contactSubmitBtn">
+              <span class="contact-submit-label">Send a Mail</span>
+              <i class="fas fa-envelope contact-submit-icon"></i>
             </button>
+            <p id="contactFormStatus" class="contact-form-message" role="status" aria-live="polite"></p>
           </form>
           <div class="contact-info reveal delay-1">
             <div class="contact-card glass">
@@ -421,6 +422,7 @@
     </div>
   </footer>
 
+  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

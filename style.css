@@ -1392,6 +1392,12 @@ ul {
   color: #b45309;
 }
 
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .contact-card i {
   font-size: 1.3rem;
   color: var(--gold);

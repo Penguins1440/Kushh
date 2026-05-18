@@ -5,7 +5,10 @@
 (function () {
   'use strict';
 
-  const WHATSAPP_NUMBER = '9779841712132';
+  const PORTFOLIO_CONFIG = window.PORTFOLIO_CONFIG || {};
+  const N8N_WEBHOOK_URL = (PORTFOLIO_CONFIG.n8nWebhookUrl || '').trim();
+  const N8N_WEBHOOK_SECRET = (PORTFOLIO_CONFIG.n8nWebhookSecret || '').trim();
+
   const TYPING_PHRASES = [
     'Explorer',
     'Web Developer',
@@ -24,6 +27,8 @@
   const navLinks = document.querySelectorAll('.nav-link');
   const typingText = document.getElementById('typingText');
   const contactForm = document.getElementById('contactForm');
+  const contactFormStatus = document.getElementById('contactFormStatus');
+  const contactSubmitBtn = document.getElementById('contactSubmitBtn');
   const sections = document.querySelectorAll('section[id]');
 
   /* ---- Loading Screen ---- */
@@ -216,9 +221,26 @@
   const skillsSection = document.getElementById('skills');
   if (skillsSection) skillObserver.observe(skillsSection);
 
-  /* ---- Contact Form → WhatsApp ---- */
+  /* ---- Contact Form → n8n Webhook → Email ---- */
+  function setContactFormStatus(text, type) {
+    if (!contactFormStatus) return;
+    contactFormStatus.textContent = text;
+    contactFormStatus.classList.remove('success', 'error');
+    if (type) contactFormStatus.classList.add(type);
+  }
+
+  function setContactFormLoading(isLoading) {
+    if (contactSubmitBtn) {
+      contactSubmitBtn.disabled = isLoading;
+    }
+    const label = contactForm?.querySelector('.contact-submit-label');
+    if (label) {
+      label.textContent = isLoading ? 'Sending…' : 'Send a Mail';
+    }
+  }
+
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = document.getElementById('name').value.trim();
@@ -226,27 +248,53 @@
       const message = document.getElementById('message').value.trim();
 
       if (!name || !email || !message) {
-        alert('Please fill in all fields.');
+        setContactFormStatus('Please fill in all fields.', 'error');
         return;
       }
 
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailPattern.test(email)) {
-        alert('Please enter a valid email address.');
+        setContactFormStatus('Please enter a valid email address.', 'error');
         return;
       }
 
-      const whatsappMessage =
-        `*New Portfolio Message*\n\n` +
-        `*Name:* ${name}\n` +
-        `*Email:* ${email}\n\n` +
-        `*Message:*\n${message}`;
+      if (!N8N_WEBHOOK_URL) {
+        setContactFormStatus(
+          'Contact form is not connected yet. Add your n8n webhook URL in config.js.',
+          'error'
+        );
+        return;
+      }
 
-      const encodedText = encodeURIComponent(whatsappMessage);
-      const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedText}`;
+      setContactFormLoading(true);
+      setContactFormStatus('Sending your message…', null);
 
-      window.open(whatsappURL, '_blank');
-      contactForm.reset();
+      const headers = { 'Content-Type': 'application/json' };
+      if (N8N_WEBHOOK_SECRET) {
+        headers['X-Webhook-Secret'] = N8N_WEBHOOK_SECRET;
+      }
+
+      try {
+        const response = await fetch(N8N_WEBHOOK_URL, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({ name, email, message })
+        });
+
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+
+        contactForm.reset();
+        setContactFormStatus('Message sent! I will get back to you soon.', 'success');
+      } catch (err) {
+        setContactFormStatus(
+          'Could not send your message. Check your n8n workflow is active and CORS is enabled.',
+          'error'
+        );
+      } finally {
+        setContactFormLoading(false);
+      }
     });
   }
 })();
